@@ -62,8 +62,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	go func() {
 		<-r.Context().Done()
 
-		sub.close()
-
+		//sub.close()
 		if s.AutoStream && !s.AutoReplay && stream.getSubscriberCount() == 0 {
 			s.RemoveStream(streamID)
 		}
@@ -73,8 +72,8 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		<-s.EnableClose
 		for {
 			if len(sub.connection) == 0 {
-				//sub.close()
-				close(sub.connection)
+				sub.close()
+				break
 			}
 		}
 	}()
