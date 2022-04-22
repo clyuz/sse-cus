@@ -1,4 +1,4 @@
-module github.com/clyuz/sse/v2
+module github.com/clyuz/sse-cus/v2
 
 go 1.17
 
